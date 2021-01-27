@@ -23,10 +23,10 @@ func main() {
 
 	options := []string{
 		"allow-pinentry-notify",
-		"agent-awareness=2.1.0",
+		"agent-awareness=2.2.20",
 	}
 
-	conn, err := agent.Dial("/run/user/1000/gnupg/S.gpg-agent", options)
+	conn, err := agent.Dial("/Users/josi/.gnupg/S.gpg-agent", options)
 
 	if err != nil {
 		log.Fatalf("Unable to connect to GPG agent! %s", err.Error())
@@ -123,7 +123,7 @@ func main() {
 		IdleTimeout:  120 * time.Second,
 		TLSConfig:    tlsConfig,
 		Handler:      http.DefaultServeMux,
-		Addr:         "[::]:8443",
+		Addr:         "[::]:3333",
 	}
 
 	http.HandleFunc("/", func(rw http.ResponseWriter, req *http.Request) {
@@ -131,7 +131,7 @@ func main() {
 			[]byte("Secure hello from a YubiKey or GPG Smartcard!"))
 	})
 
-	log.Printf("Listening")
+	log.Printf("Listening securely.")
 	log.Println(srv.ListenAndServeTLS("", ""))
 
 	conn.Close()

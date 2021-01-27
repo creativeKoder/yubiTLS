@@ -13,7 +13,7 @@ import (
 	"github.com/prep/gpg/agent"
 )
 
-var csrCN = flag.String("csr.cn", "yubitls.benjojo.co.uk", "the Common Name of the CSR you want to generate")
+var csrCN = flag.String("csr.cn", "iam.josi.io", "the Common Name of the CSR you want to generate")
 
 func GenerateCSR(inkey agent.Key) {
 
